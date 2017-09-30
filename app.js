@@ -33,19 +33,34 @@ var button = document.querySelector('button');
 
 
 //interval operator 
-var observable = Rx.Observable.interval(1000)
-.map((value)=>{
-    return 'Number:'+value;
-})
-.throttleTime(2000)
-.subscribe(
-    v => {
-        console.log(v)
-    },
-    e => {
-        console.log('Error', e)
-    },
-    () => {
-        console.log('Completed')
-    }
-);
+// var observable = Rx.Observable.interval(1000)
+// .map((value)=>{
+//     return 'Number:'+value;
+// })
+// .throttleTime(2000)
+// .subscribe(
+//     v => {
+//         console.log(v)
+//     },
+//     e => {
+//         console.log('Error', e)
+//     },
+//     () => {
+//         console.log('Completed')
+//     }
+// );
+
+//Subject 
+var subject = new Rx.Subject();
+subject.subscribe((value)=>{
+    console.log(value);
+},(error) =>{
+    console.log(error);
+},(complete)=>{
+    console.log(complete);
+});
+
+subject.next("this is cool");
+// subject.error("this is uncool");
+subject.complete("this is complete");
+
